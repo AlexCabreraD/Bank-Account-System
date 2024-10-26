@@ -28,3 +28,8 @@ The **Bank Account System** is a console-based application designed to manage ba
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/bank-account-system.git
+
+## Usage
+After compiling the program, run the executable:
+```bash
+./BankAccountSystem
