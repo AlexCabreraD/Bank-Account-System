@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
+#include <time.h>
 
 Transaction::Transaction(const std::string& type, double amt, const std::string& desc)
 	:transactionType(type),
@@ -18,8 +19,20 @@ std::string Transaction::getTransactionDetails() const {
     details << "ID: " << transactionId
         << "\nType: " << transactionType
         << "\nAmount: $" << std::fixed << std::setprecision(2) << amount
-        << "\nDescription: " << description
-        << "\nTimestamp: " << std::asctime(std::localtime(&timestamp));
+        << "\nDescription: " << description;
+
+    // Using localtime_s safely with a tm structure
+    char timeBuffer[26]; // Buffer size for asctime_s (usually 26 characters)
+    struct tm timeInfo;  // tm structure to hold local time information
+
+    // Populate timeInfo using localtime_s
+    if (localtime_s(&timeInfo, &timestamp) == 0 && asctime_s(timeBuffer, sizeof(timeBuffer), &timeInfo) == 0) {
+        details << "\nTimestamp: " << timeBuffer;
+    }
+    else {
+        details << "\nTimestamp: Error formatting timestamp";
+    }
+
     return details.str();
 }
 

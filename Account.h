@@ -26,6 +26,9 @@ public:
     const std::list<Transaction>& getTransactionHistory() const; // Retrieve transaction history
     void printAccountDetails() const;                 // Display account details
 
+    std::string getAccountNumber() const; // Get account number
+    std::string getAccountHolderName() const; // Get account holder name
+    std::string getAccountType() const; // Get account type 
 private:
     // Account Attributes
     std::string accountNumber;         // Unique identifier for the account

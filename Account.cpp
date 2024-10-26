@@ -73,6 +73,21 @@ const std::list<Transaction>& Account::getTransactionHistory() const {
     return transactionHistory;
 }
 
+// Get account number
+std::string Account::getAccountNumber() const {
+    return accountNumber;
+}
+
+// Get account holder name
+std::string Account::getAccountHolderName() const {
+    return accountHolderName;
+}
+
+// Get account type
+std::string Account::getAccountType() const {
+    return accountType;
+}
+
 // Display account details
 void Account::printAccountDetails() const {
     std::cout << "Account Number: " << accountNumber << std::endl;
