@@ -6,25 +6,25 @@
 class Transaction {
 public:
     // Constructor
-    Transaction(const std::string& type, double amt, const std::string& desc);
+    Transaction(const std::string& type, double amt, const std::string& desc); // Initializes a transaction with type, amount, and description
 
     // Methods
-    std::string getTransactionDetails() const;
+    std::string getTransactionDetails() const; // Returns a string with transaction details
 
-    // Getter methods
-    std::string getTransactionType() const;
-    double getAmount() const;
-    time_t getTimestamp() const;
-    std::string getDescription() const;
+    // Accessors
+    std::string getTransactionType() const; // Get the type of transaction (e.g., "deposit", "withdrawal")
+    double getAmount() const;               // Get the transaction amount
+    time_t getTimestamp() const;            // Get the timestamp of when the transaction was created
+    std::string getDescription() const;     // Get the description of the transaction
 
 private:
     // Attributes
-    std::string transactionType;
-    double amount;
-    time_t timestamp;
-    std::string transactionId;
-    std::string description;
+    std::string transactionType;   // Type of transaction
+    double amount;                 // Amount involved in the transaction
+    time_t timestamp;              // Time the transaction was created
+    std::string transactionId;     // Unique identifier for the transaction
+    std::string description;       // Description of the transaction
 
-    // Helper methods
-    std::string generateTransactionId() const;
+    // Helper Methods
+    std::string generateTransactionId() const; // Generates a unique ID for the transaction
 };
