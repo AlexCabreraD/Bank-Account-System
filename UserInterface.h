@@ -14,7 +14,7 @@ public:
     void printMenu(); // Display the main menu to the user
 
     // User Input Handling
-    void getUserInput(); // Get user input from the console
+    int getUserInput(); // Get user input from the console
     std::string promptUserForInput(const std::string& promptMessage); // Prompt user with a message and return the input
 
     // Message Display

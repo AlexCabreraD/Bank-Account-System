@@ -16,18 +16,30 @@ void UserInterface::printMenu() {
     std::cout << "====================================\n";
 }
 
-void UserInterface::getUserInput() {
+#include <iostream>
+#include <string>
+
+int UserInterface::getUserInput() {
     std::string input;
-    
+    int choice = 0;
+
     while (true) {
         std::getline(std::cin, input);
-        // TODO: HERE PROCCESS INPUTS
-        if (input == "exit") {
-            break;
+
+        try {
+            choice = std::stoi(input);
+
+            return choice;
         }
-        // TODO: HERE HANDLE BEFORE APP CLOSES (IF ANY)
+        catch (const std::invalid_argument&) {
+            std::cout << "Invalid input. Please enter a valid number." << std::endl;
+        }
+        catch (const std::out_of_range&) {
+            std::cout << "Input is out of range. Please enter a number between 1 and 8." << std::endl;
+        }
     }
 }
+
 
 std::string UserInterface::promptUserForInput(const std::string& promptMessage) {
     std::string input;

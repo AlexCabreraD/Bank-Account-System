@@ -1,5 +1,8 @@
 #include <string>
 #include <list>
+#include <iomanip>
+#include <sstream>
+
 #include "Transaction.h"
 
 #pragma once

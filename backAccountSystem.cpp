@@ -1,6 +1,10 @@
 #include <iostream>
+#include "BankAccountSystem.h"
+#include "UserInterface.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    BankAccountSystem bankSystem; // Create an instance of BankAccountSystem
+    bankSystem.displayMenu();
+
+    return 0; 
 }
