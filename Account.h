@@ -13,6 +13,7 @@ public:
     // Constructors
     Account(); 
     Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType);
+    Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType, const int& balance, const bool& isActive);
 
     // Account Management Methods
     void closeAccount();  // Mark the account as inactive

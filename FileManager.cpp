@@ -33,11 +33,7 @@ std::list<Account> FileManager::loadAccounts() {
         file.ignore(); // Ignore newline character after reading isActive
 
         // Create account with read values and add to the list
-        Account account(accountNumber, accountHolderName, accountType);
-        account.deposit(balance); // Set the balance (assuming starting balance via deposit)
-        if (!isActive) {
-            account.closeAccount(); // Set status if inactive
-        }
+        Account account(accountNumber, accountHolderName, accountType, balance, isActive);
 
         accounts.push_back(account); // Add account to the list
     }

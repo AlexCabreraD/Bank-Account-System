@@ -146,5 +146,6 @@ Account* BankAccountSystem::findAccount(const std::string& accountNumber) {
 
 // Exit the system
 void BankAccountSystem::exitSystem() {
+    saveAccountsToFile();
     ui.displayMessage("Exiting the system. Goodbye!");
 }
