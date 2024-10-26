@@ -27,11 +27,13 @@ The **Bank Account System** is a console-based application designed to manage ba
 Clone the repository:
    ```bash
    git clone https://github.com/yourusername/bank-account-system.git
+```
 
 ## Usage
 After compiling the program, run the executable:
 ```bash
 ./BankAccountSystem
+```
 
 ## Class Overview
 - **Account**: Represents a bank account with methods for depositing and withdrawing funds.
