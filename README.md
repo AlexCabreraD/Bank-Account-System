@@ -23,18 +23,6 @@ The **Bank Account System** is a console-based application designed to manage ba
 - C++11 or higher
 - A C++ compiler (e.g., g++, Visual Studio, etc.)
 
-## Installation
-Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/bank-account-system.git
-```
-
-## Usage
-After compiling the program, run the executable:
-```bash
-./BankAccountSystem
-```
-
 ## Class Overview
 - **Account**: Represents a bank account with methods for depositing and withdrawing funds.
 - **Transaction**: Captures the details of financial transactions.
