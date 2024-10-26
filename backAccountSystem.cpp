@@ -3,7 +3,7 @@
 #include "UserInterface.h"
 
 int main() {
-    BankAccountSystem bankSystem; // Create an instance of BankAccountSystem
+    BankAccountSystem bankSystem;
     bankSystem.displayMenu();
 
     return 0; 
