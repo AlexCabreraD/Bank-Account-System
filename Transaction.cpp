@@ -13,6 +13,13 @@ Transaction::Transaction(const std::string& type, double amt, const std::string&
 	transactionId = generateTransactionId();
 }
 
+Transaction::Transaction(const std::string& type, double amt, const std::string& desc, const std::string transactionId, const time_t timestamp)
+    :transactionType(type),
+    amount(amt),
+    description(desc),
+    transactionId(transactionId),
+    timestamp(timestamp) {}
+
 // Get transaction details as a formatted string
 std::string Transaction::getTransactionDetails() const {
     std::ostringstream details;

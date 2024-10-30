@@ -7,6 +7,7 @@ class Transaction {
 public:
     // Constructor
     Transaction(const std::string& type, double amt, const std::string& desc); // Initializes a transaction with type, amount, and description
+    Transaction(const std::string& type, double amt, const std::string& desc, const std::string transactionId, const time_t timestamp); // Initializes a transaction with all attributes
 
     // Methods
     std::string getTransactionDetails() const; // Returns a string with transaction details

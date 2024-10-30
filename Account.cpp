@@ -1,6 +1,8 @@
 #include "Account.h"
-#include <iostream>
+#include <fstream>
 #include <iomanip>
+#include <iostream>
+#include <sstream>
 
 // ANSI escape codes for styling
 const std::string RESET = "\033[0m";
@@ -14,14 +16,18 @@ const std::string BLUE = "\033[34m";
 const std::string MAGENTA = "\033[35m";
 
 // Default constructor
-Account::Account() : accountNumber(""), accountHolderName(""), accountType("") {}
+Account::Account() : accountNumber(""), accountHolderName(""), accountType("") {
+    createTransactionFile();
+}
 
 // Parameterized constructor
 Account::Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType)
-    : accountNumber(accountNumber), accountHolderName(accountHolderName), accountType(accountType), balance(0.0), isActive(true) {}
+    : accountNumber(accountNumber), accountHolderName(accountHolderName), accountType(accountType), balance(0.0), isActive(true) {
+    createTransactionFile();
+}
 
 // Parameterized constructor
-Account::Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType, const int& balance, const bool& isActive)
+Account::Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType, const double& balance, const bool& isActive)
     : accountNumber(accountNumber), accountHolderName(accountHolderName), accountType(accountType), balance(balance), isActive(isActive) {}
 
 // Close account - mark as inactive
@@ -70,8 +76,18 @@ void Account::transfer(Account& toAccount, double amount) {
 // Log a transaction
 void Account::logTransaction(const std::string& transactionType, double amount) {
     Transaction newTransaction(transactionType, amount, "Transaction for account: " + accountNumber);
-    transactionHistory.push_back(newTransaction);
+
+    // Append the transaction to the user's file
+    std::ofstream outFile(getTransactionFileName(), std::ios::app);
+    if (outFile.is_open()) {
+        outFile << newTransaction.getTransactionDetails() << "\n\n"; // Write formatted transaction details
+        outFile.close();
+    }
+    else {
+        std::cerr << "Error: Unable to open transaction file for account " << accountNumber << std::endl;
+    }
 }
+
 
 // Check if account is active
 bool Account::isAccountActive() const {
@@ -81,11 +97,6 @@ bool Account::isAccountActive() const {
 // Get current balance
 double Account::getBalance() const {
     return balance;
-}
-
-// Retrieve transaction history
-const std::list<Transaction>& Account::getTransactionHistory() const {
-    return transactionHistory;
 }
 
 // Get account number
@@ -101,6 +112,24 @@ std::string Account::getAccountHolderName() const {
 // Get account type
 std::string Account::getAccountType() const {
     return accountType;
+}
+
+// Generate transaction file name
+std::string Account::getTransactionFileName() const {
+    return "transactions_" + accountNumber + ".txt";
+}
+
+// Create a new transaction file for the account
+void Account::createTransactionFile() const {
+    std::ofstream outFile(getTransactionFileName(), std::ios::app);
+    if (outFile.is_open()) {
+        std::cout << "Success: Created transaction file for account " << accountNumber << std::endl;
+        outFile << "=== Transaction History for Account: " << accountNumber << " ===\n\n";
+        outFile.close();
+    }
+    else {
+        std::cerr << "Error: Unable to create transaction file for account " << accountNumber << std::endl;
+    }
 }
 
 // Display account details

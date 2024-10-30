@@ -13,7 +13,7 @@ public:
     // Constructors
     Account(); 
     Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType);
-    Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType, const int& balance, const bool& isActive);
+    Account(const std::string& accountNumber, const std::string& accountHolderName, const std::string& accountType, const double& balance, const bool& isActive);
 
     // Account Management Methods
     void closeAccount();  // Mark the account as inactive
@@ -27,12 +27,12 @@ public:
     // Accessors
     bool isAccountActive() const;                     // Check if account is active
     double getBalance() const;                        // Get current balance
-    const std::list<Transaction>& getTransactionHistory() const; // Retrieve transaction history
     void printAccountDetails() const;                 // Display account details
 
     std::string getAccountNumber() const; // Get account number
     std::string getAccountHolderName() const; // Get account holder name
     std::string getAccountType() const; // Get account type 
+    std::string getTransactionFileName() const; // Name of transactions file for this account
 private:
     // Account Attributes
     std::string accountNumber;         // Unique identifier for the account
@@ -41,7 +41,8 @@ private:
     std::string accountType;           // Type of account (e.g., savings, checking)
     bool isActive = true;              // Status of the account (active or inactive)
 
-    // Transaction History
-    std::list<Transaction> transactionHistory; // List of all transactions associated with the account
+    // Creates the transaction file for a user
+    void createTransactionFile() const;
+
 };
 

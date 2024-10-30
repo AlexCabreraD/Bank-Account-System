@@ -1,4 +1,5 @@
 #include "BankAccountSystem.h"
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -114,13 +115,27 @@ void BankAccountSystem::viewTransactionHistory() {
     Account* account = findAccount(accountNumber);
 
     if (account) {
-        const std::list<Transaction>& history = account->getTransactionHistory();
-        ui.displayTransactionHistory(history);
+        std::ifstream inFile(account->getTransactionFileName());
+
+        if (inFile.is_open()) {
+            ui.displayMessage("Transaction History for Account: " + accountNumber + "\n");
+
+            std::string line;
+            while (std::getline(inFile, line)) {
+                ui.displayMessage(line); // Display each line in the transaction history
+            }
+
+            inFile.close();
+        }
+        else {
+            ui.displayMessage("No transaction history file found for account: " + accountNumber);
+        }
     }
     else {
         ui.displayMessage("Account not found.");
     }
 }
+
 
 // Load accounts from a file
 void BankAccountSystem::loadAccountsFromFile() {
